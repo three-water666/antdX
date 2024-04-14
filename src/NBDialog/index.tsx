@@ -1,17 +1,27 @@
 import { CloseOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import React, { Fragment, useRef, useState } from 'react';
+import type { DraggableData, DraggableEvent } from 'react-draggable';
 import Draggable from 'react-draggable';
 
 const maxIndex = () => {
-  const tMaxIndex = [...document.querySelectorAll('#myModal')].reduce(
-    (r, e) => Math.max(r, +window.getComputedStyle(e).zIndex || 0),
-    0,
-  );
+  const tMaxIndex = [
+    ...Array.from(document.querySelectorAll('#myModal')),
+  ].reduce((r, e) => Math.max(r, +window.getComputedStyle(e).zIndex || 0), 0);
   return tMaxIndex >= 1000 ? tMaxIndex : 1000;
 };
 
-const NBDialog = (props) => {
+interface NBDialogProps {
+  visible: boolean;
+  title: string;
+  onOk: () => void;
+  onCancel: () => void;
+  children: React.ReactNode;
+  style?: React.CSSProperties;
+  [key: string]: any;
+}
+
+const NBDialog = (props: NBDialogProps) => {
   const { visible, title, onOk, onCancel, children, style, ...otherProps } =
     props;
   const [zIndex, setIndex] = useState(maxIndex() + 1);
@@ -22,7 +32,7 @@ const NBDialog = (props) => {
     bottom: 0,
     right: 0,
   });
-  const draggleRef = useRef(null);
+  const draggleRef = useRef<HTMLDivElement>(null);
 
   const [disabled, setDisabled] = useState(true);
 
@@ -30,7 +40,7 @@ const NBDialog = (props) => {
     setIndex(maxIndex() + 1);
   };
 
-  const onStart = (_event, uiData) => {
+  const onStart = (_event: DraggableEvent, uiData: DraggableData) => {
     const { clientWidth, clientHeight } = window.document.documentElement;
     const targetRect = draggleRef.current?.getBoundingClientRect();
     if (!targetRect) {
