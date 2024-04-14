@@ -1,39 +1,31 @@
 # antdX
 
-[![NPM version](https://img.shields.io/npm/v/antdX.svg?style=flat)](https://npmjs.org/package/antdX)
-[![NPM downloads](http://img.shields.io/npm/dm/antdX.svg?style=flat)](https://npmjs.org/package/antdX)
+一个基于 antd 的组件库
 
-A react library developed with dumi
+项目基于 dumi，网站部署使用 vercel
 
-## Usage
+## 使用
 
-TODO
+预览和文档地址：https://antd-x.vercel.app/
 
-## Options
+在项目中使用：
 
-TODO
+```
+yarn add antdX
+```
 
-## Development
+## 本地运行
 
 ```bash
-# install dependencies
-$ yarn install
+yarn install
 
-# develop library by docs demo
-$ yarn start
-
-# build library source code
-$ yarn run build
-
-# build library source code in watch mode
-$ yarn run build:watch
-
-# build docs
-$ yarn run docs:build
-
-# check your project for potential problems
-$ yarn run doctor
+yarn start
 ```
+
+## TODO
+
+- [x] NBDialog 非阻塞弹窗
+- [ ] ...
 
 ## LICENSE
 
